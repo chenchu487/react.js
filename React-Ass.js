@@ -220,7 +220,7 @@ function sum(a, b, ...rest) {
 }
 console.log(sum(1, 2, 3, 4, 5));
 
-// 19. Destructure first 3 marks. 
+// 19. Destructure first 3 marks
 
 let marks = [90, 80, 70, 60 , 50];
 let [m1, m2, m3] = marks;
