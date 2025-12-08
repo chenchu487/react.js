@@ -11,6 +11,9 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 </head>
 
 <body>
@@ -18,62 +21,70 @@
     <div class="row-container">
 
 
-    <div class="To-do-Main">
+        <div class="To-do-Main">
 
-        <div class="To-do-Container">
-            <h1 class="To-do-Heading">To - Do List</h1>
-            <div class="To-do-Input-section">
+            <div class="To-do-Container">
+                <h1 class="To-do-Heading">To - Do List</h1>
+                <div class="To-do-Input-section">
 
-                <input type="text" class="To-do-Input" placeholder="Add your task here...">
-                <button class="To-do-Add-Button">Add Task</button>
-            </div>
-            <ul class="To-do-List">
-
-
-            </ul>
-
-            <div class="To-do-Delete-Button">
-                <button class="To-do-Clear-Button">Clear All Tasks</button>
-            </div>
+                    <input type="text" class="To-do-Input" placeholder="Add your task here...">
+                    <button class="To-do-Add-Button">Add Task</button>
+                </div>
+                <ul class="To-do-List">
 
 
-        </div>
-    </div>
+                </ul>
+
+                <div class="To-do-Delete-Button">
+                    <button class="To-do-Clear-Button">Clear All Tasks</button>
+                </div>
 
 
-    <!-- Calculator  -->
-
-    <div class="calc-Main">
-        <div class="calc-container">
-            <input type="text" class="calc-display" id="calc-display" readonly>
-
-            <div class="calc-buttons">
-                <button class="btn btn-func" data-key="C">C</button>
-                <button class="btn btn-func" data-key="DEL">DEL</button>
-                <button class="btn btn-op" data-key="%">%</button>
-                <button class="btn btn-op" data-key="/">÷</button>
-
-                <button class="btn" data-key="7">7</button>
-                <button class="btn" data-key="8">8</button>
-                <button class="btn" data-key="9">9</button>
-                <button class="btn btn-op" data-key="*">×</button>
-
-                <button class="btn" data-key="4">4</button>
-                <button class="btn" data-key="5">5</button>
-                <button class="btn" data-key="6">6</button>
-                <button class="btn btn-op" data-key="-">−</button>
-
-                <button class="btn" data-key="1">1</button>
-                <button class="btn" data-key="2">2</button>
-                <button class="btn" data-key="3">3</button>
-                <button class="btn btn-op" data-key="+">+</button>
-
-                <button class="btn" data-key="0">0</button>
-                <button class="btn" data-key=".">.</button>
-                <button class="btn btn-eq" data-key="=">=</button>
             </div>
         </div>
-    </div>
+
+
+        <!-- Calculator  -->
+
+        <div class="calc-Main">
+
+           
+
+            <div class="calc-container">
+
+                 <div class="calc-history">
+                <i class="fa-solid fa-clock-rotate-left history-icon"></i>
+                <ul id="history-list"></ul>
+            </div>
+                <input type="text" class="calc-display" id="calc-display" readonly>
+
+                <div class="calc-buttons">
+                    <button class="btn btn-func" data-key="C">C</button>
+                    <button class="btn btn-func" data-key="DEL">DEL</button>
+                    <button class="btn btn-op" data-key="%">%</button>
+                    <button class="btn btn-op" data-key="/">÷</button>
+
+                    <button class="btn" data-key="7">7</button>
+                    <button class="btn" data-key="8">8</button>
+                    <button class="btn" data-key="9">9</button>
+                    <button class="btn btn-op" data-key="*">×</button>
+
+                    <button class="btn" data-key="4">4</button>
+                    <button class="btn" data-key="5">5</button>
+                    <button class="btn" data-key="6">6</button>
+                    <button class="btn btn-op" data-key="-">−</button>
+
+                    <button class="btn" data-key="1">1</button>
+                    <button class="btn" data-key="2">2</button>
+                    <button class="btn" data-key="3">3</button>
+                    <button class="btn btn-op" data-key="+">+</button>
+
+                    <button class="btn" data-key="0">0</button>
+                    <button class="btn" data-key=".">.</button>
+                    <button class="btn btn-eq" data-key="=">=</button>
+                </div>
+            </div>
+        </div>
 
     </div>
 

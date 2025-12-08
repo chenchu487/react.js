@@ -300,47 +300,74 @@ clearButton.addEventListener("click", clearAllTasks);
 
 const display = document.getElementById("calc-display");
 const buttons = document.querySelectorAll(".btn");
+const historyList = document.getElementById("history-list");
+const historyIcon = document.querySelector(".history-icon");
 
 let currentExpression = "";
 
 function updateDisplay(value) {
-  display.value = value;
+    display.value = value;
 }
 
-buttons.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    const key = btn.getAttribute("data-key");
+// Add calculation to history
+function addToHistory(expression, result) {
+    let li = document.createElement("li");
+    li.textContent = `${expression} = ${result}`;
 
-    if (key === "C") {
-      // Clear all
-      currentExpression = "";
-      updateDisplay("");
-    } else if (key === "DEL") {
-      // Delete last character
-      currentExpression = currentExpression.slice(0, -1);
-      updateDisplay(currentExpression);
-    } else if (key === "=") {
-
-      // Calculate result
-      if (currentExpression.trim() === "") return;
-
-      try {
-        // Wrong Calculation Error MSG 
-        const result = eval(currentExpression);
+    // Click on history item → load back into calculator
+    li.addEventListener("click", () => {
+        display.value = result;
         currentExpression = result.toString();
-        updateDisplay(currentExpression);
-      } catch (error) {
-        updateDisplay("Error");
-        currentExpression = "";
-      }
-    } else {
-        
-      // Add number and operator 
 
-      currentExpression += key;
-      updateDisplay(currentExpression);
-    }
-  });
+        historyList.classList.remove("show"); // Hide history
+    });
+
+    historyList.prepend(li); // Add at top
+}
+
+// Show & Hide History on icon click
+historyIcon.addEventListener("click", () => {
+    historyList.classList.toggle("show");
+});
+
+buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+        const key = btn.getAttribute("data-key");
+
+        if (key === "C") {
+            // Clear all
+            currentExpression = "";
+            updateDisplay("");
+        } else if (key === "DEL") {
+            // Delete last character
+            currentExpression = currentExpression.slice(0, -1);
+            updateDisplay(currentExpression);
+        } else if (key === "=") {
+
+            // Calculate result
+            if (currentExpression.trim() === "") return;
+
+            try {
+                // Wrong Calculation Error MSG 
+                const result = eval(currentExpression);
+
+
+                addToHistory(currentExpression, result); //  add history
+
+                currentExpression = result.toString();
+                updateDisplay(currentExpression);
+            } catch (error) {
+                updateDisplay("Error");
+                currentExpression = "";
+            }
+        } else {
+
+            // Add number and operator 
+
+            currentExpression += key;
+            updateDisplay(currentExpression);
+        }
+    });
 });
 
 
