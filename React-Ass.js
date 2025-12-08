@@ -309,6 +309,8 @@ function updateDisplay(value) {
     display.value = value;
 }
 
+
+
 // Add calculation to history
 function addToHistory(expression, result) {
     let li = document.createElement("li");
