@@ -230,70 +230,7 @@
 
 
 
-// To - Do App : 
 
-
-const todoInput = document.querySelector('.To-do-Input');
-const todoAddButton = document.querySelector('.To-do-Add-Button');
-const todoList = document.querySelector('.To-do-List');
-const clearButton = document.querySelector('.To-do-Clear-Button');
-let ul = document.querySelector("ul")
-
-// Add Task
-
-function addTask() {
-    if (todoInput.value === "") {
-        alert("You have To add task first!")
-
-    } else {
-        let taskText = document.createElement('li');
-        taskText.classList.add("To-do-Item");
-        taskText.innerHTML = `${todoInput.value} <span class="delete-btn">×</span>`;
-
-
-        taskText.addEventListener("click", () => {
-            taskText.classList.toggle("Checked");
-
-
-        });
-
-        taskText.querySelector(".delete-btn").addEventListener("click", (e) => {
-            e.stopPropagation();
-            taskText.remove();
-        });
-
-
-
-        todoList.appendChild(taskText);
-        todoInput.value = "";
-
-    }
-
-}
-
-todoAddButton.addEventListener("click", () => {
-    addTask();
-});
-
-
-// Clear Tasks 
-
-function clearAllTasks() {
-
-    if (todoList.innerHTML === "") {
-        alert("The list is already empty!");
-        return;
-    }
-
-    let getUser = confirm("Are you sure you want to clear all tasks?");
-
-    if (getUser) {
-        todoList.innerHTML = "";
-    }
-}
-
-
-clearButton.addEventListener("click", clearAllTasks);
 
 
 // Calculator 
@@ -302,6 +239,7 @@ const display = document.getElementById("calc-display");
 const buttons = document.querySelectorAll(".btn");
 const historyList = document.getElementById("history-list");
 const historyIcon = document.querySelector(".history-icon");
+const historyPopup = document.querySelector(".history-popup");
 
 let currentExpression = "";
 
@@ -310,67 +248,74 @@ function updateDisplay(value) {
 }
 
 
-
 // Add calculation to history
 function addToHistory(expression, result) {
     let li = document.createElement("li");
     li.textContent = `${expression} = ${result}`;
 
-    // Click on history item → load back into calculator
     li.addEventListener("click", () => {
         display.value = result;
         currentExpression = result.toString();
 
-        historyList.classList.remove("show"); // Hide history
+        // Close popup
+        historyPopup.classList.remove("show");
     });
 
-    historyList.prepend(li); // Add at top
+    historyList.prepend(li);
 }
 
-// Show & Hide History on icon click
+
+// Show & Hide popup
+
 historyIcon.addEventListener("click", () => {
-    historyList.classList.toggle("show");
+    historyPopup.classList.add("show");
 });
+
+// Close popup 
+historyPopup.addEventListener("click", (e) => {
+    if (e.target.classList.contains("history-popup")) {
+        historyPopup.classList.remove("show");
+    }
+});
+
 
 buttons.forEach((btn) => {
     btn.addEventListener("click", () => {
         const key = btn.getAttribute("data-key");
 
         if (key === "C") {
-            // Clear all
             currentExpression = "";
             updateDisplay("");
-        } else if (key === "DEL") {
-            // Delete last character
+        }
+        else if (key === "DEL") {
             currentExpression = currentExpression.slice(0, -1);
             updateDisplay(currentExpression);
-        } else if (key === "=") {
+        }
+        else if (key === "=") {
 
-            // Calculate result
             if (currentExpression.trim() === "") return;
 
             try {
-                // Wrong Calculation Error MSG 
                 const result = eval(currentExpression);
 
-
-                addToHistory(currentExpression, result); //  add history
+                // Add history
+                addToHistory(currentExpression, result);
 
                 currentExpression = result.toString();
                 updateDisplay(currentExpression);
-            } catch (error) {
+            }
+            catch (error) {
                 updateDisplay("Error");
                 currentExpression = "";
             }
-        } else {
-
-            // Add number and operator 
-
+        }
+        else {
             currentExpression += key;
             updateDisplay(currentExpression);
         }
     });
 });
+
 
 
 
